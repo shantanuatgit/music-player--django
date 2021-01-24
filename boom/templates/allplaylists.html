@@ -1,0 +1,42 @@
+{% extends 'home.html' %}
+{% load staticfiles %}
+{% load static %}
+
+{% block content %}
+<div class="album py-5 bg-dark">
+
+  <div><font face="jokerman" color="lightblue"><h3>Playlists:</h3></div></font>
+<div class="right"><a class="btn btn-primary" href="{% url 'createplaylist' %}">
+  <font face="jokerman"><h3>+ Add</h3>
+</a></div>
+  <div class="container">
+
+    <div class="row">
+      {% if playlists %}
+      {% for playlist in playlists.all %}
+      <div class="col-md-3">
+        <div class="card mb-4 shadow-sm" style="width: 200px; height: 220px;" >
+          <div class="card-body">
+            <img  src="../media/images/playlistlogo.jpg"  height="100" width="100" class="card-img-top"/>
+            <p class="card-text"><font face="jokerman" size="5px">
+        <a href="{% url 'playlistsongs' %}?name={{ playlist.list_name }},{{playlist.id}}">{{playlist.list_name}}</a>
+            </font>
+            </p>
+            <div class="btn-group">
+              <form method='GET' action="{{playlist.id}}">
+                {% csrf_token %}
+                <button type="submit" class="btn btn-sm btn-outline-secondary text-dark"><font face="jokerman" size="2px">Remove</button></font>
+              </form>
+
+            </div>
+
+        </div>
+        </div>
+      </div>
+      {% endfor %}
+    </div>
+</div>
+
+{% endif %}
+
+{% endblock %}

@@ -1,0 +1,35 @@
+
+{% block content %}
+
+{% if error %}
+<br/>
+{{error}}
+<br/>
+<br/>
+{% endif %}
+
+
+<h1>Sign Up!</h1>
+<form method="POST" action="{% url 'signup' %}">
+{% csrf_token %}
+USERNAME:
+<br/>
+<input type="text" name="Username" required />
+<br/>
+<br/>
+PASSWORD:
+<br/>
+<input type="password" name="password1" required/>
+<br/>
+<br/>
+Confirm Password:
+<br/>
+<input type="password" name="password2" required/>
+<br/>
+<br/>
+<input type="submit" class="btn btn-primary" value="sign up!">
+</form>
+<br/>
+Have an account? <a href="{% url 'login' %}">login</a>
+
+{% endblock %}

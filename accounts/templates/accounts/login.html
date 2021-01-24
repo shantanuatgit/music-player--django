@@ -1,0 +1,28 @@
+
+{% block content %}
+<h1>Login</h1>
+{% if error %}
+<br/>
+{{error}}
+<br/>
+<br/>
+{% endif %}
+
+
+<form method="POST" action="{% url 'login' %}">
+{% csrf_token %}
+USERNAME:
+<br/>
+<input type="text" name="username" required/>
+<br/>
+<br/>
+PASSWORD:
+<br/>
+<input type="password" name="password" required/>
+<br/>
+<br/>
+<input type="submit" class="btn btn-primary" value="login">
+</form>
+
+
+{% endblock %}

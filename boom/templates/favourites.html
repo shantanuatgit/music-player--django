@@ -1,0 +1,51 @@
+{% extends 'home.html' %}
+{ % load staticfiles % }
+{% block content %}
+<div class="bg-dark">
+<div class="album py-5 bg-light">
+  <div><font face="jokerman" color="blue"><h3>Favourites:</h3></div></font>
+  <div class="container">
+
+    <div class="row">
+      {% for fav in favs.all %}
+      <div class="col-md-4">
+        <div class="card mb-4 shadow-sm bg-dark">
+          <div class="card-body">
+            <img  src="{{fav.song.image.url}}" height="200" width="200" class="card-img-top"/>
+            <p class="card-text text-light"><font face="jokerman" size="3px">
+                                  {{ fav.song.song_name }}
+                                  ({{ fav.song.movie }})</br>
+                                  Artist: {{fav.song.artist}}</font>
+
+            </p>
+            <div class="d-flex justify-content-between align-items-center">
+              <div class="btn-group">
+                <form method='GET' action="{{fav.song.id}} {{fav.song.artist}}">
+                  {% csrf_token %}
+                  <button type="submit" class="btn btn-sm btn-outline-secondary text-light"><font face="jokerman" size="4px">Play</button></font>
+                </form>
+
+              </div>
+              <form method='POST' action="{{fav.id}}">
+                {% csrf_token %}
+              <button type="submit" class="btn btn-sm btn-outline-secondary text-light"><font face="jokerman" size="4px">Remove</button></div></font>
+            </form>
+              </br>
+              <div><small class="text-muted text-light"><font face="jokerman" size="3px">{{ fav.song.year }}</small></font>
+
+
+
+        </div>
+        </div>
+      </div>
+    </div>
+      {% endfor %}
+</div>
+</div>
+
+</div>
+
+
+</div>
+
+{% endblock %}

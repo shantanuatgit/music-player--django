@@ -1,0 +1,46 @@
+{% extends 'home.html' %}
+{% load staticfiles %}
+{% load static %}
+{% block content %}
+
+<div class="bg-dark">
+<div class="album py-5 bg-light">
+  <div><font face="jokerman" color="blue"><h3>Search results:</h3></div></font>
+  <div class="container">
+
+    <div class="row">
+      {% for obj in obj_list.all %}
+      <div class="col-md-4">
+        <div class="card mb-4 shadow-sm bg-dark">
+          <div class="card-body">
+            <img  src="{{obj.image.url}}" height="200" width="200" class="card-img-top"/>
+            <p class="card-text text-light"><font face="jokerman" size="3px">
+                                  {{ obj.song_name }}
+                                  ({{ obj.movie }})</br>
+                                  Artist: {{obj.artist}}</font>
+
+            </p>
+            <div class="d-flex justify-content-between align-items-center">
+              <div class="btn-group">
+                <form method='GET' action="{{obj.id}} {{obj.year}}">
+                  {% csrf_token %}
+                  <button type="submit" class="btn btn-sm btn-outline-secondary text-light">
+                    <font face="jokerman" size="4px">Play</button></font>
+                </form>
+
+              </div>
+
+                </div>
+
+              </br>
+              <div><small class="text-muted text-light"><font face="jokerman" size="3px">{{ obj.year }}</small></font>
+        </div>
+        </div>
+      </div>
+    </div>
+      {% endfor %}
+</div>
+</div>
+</div>
+</div>
+{% endblock %}

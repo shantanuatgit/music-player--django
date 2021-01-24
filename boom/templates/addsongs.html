@@ -1,0 +1,85 @@
+{% extends 'home.html' %}
+{% load staticfiles %}
+{% load static %}
+{% block content %}
+<div class="album py-5 bg-dark">
+  <a href="{% url 'backtoplaylist' %}"><font face="jokerman" color="lightblue"><h2>Go to  {{ name }}:</h2>
+  </font></a>
+<br/>
+<form class="d-flex" action="2" method="get">
+  <input class="form-control me-2" type="text" name="query" placeholder="Find songs, movie or artists"/required>
+  <button class="btn btn-outline-success" type="submit"><font face="jokerman" size="3.5px">Find</a></button></font>
+</form>
+<br/>
+  <div><font face="jokerman" color="lightblue"><h3>Add Songs to  {{ name }}:</h3></div></font>
+{% if obj_list %}
+<font face="jokerman" color="lightblue"><h4>Search results:</h4>
+  <div class="container">
+
+    <div class="row">
+      {% for obj in obj_list.all %}
+      <div class="col-md-4">
+        <div class="card mb-4 shadow-sm" style="width: 300px; height: 300px;" >
+          <div class="card-body">
+            <img  src="{{ obj.image.url }}"  height="150" width="100" class="card-img-top"/>
+            <p class="card-text"><font face="jokerman" size="2px">
+                Song:  {{obj.song_name}}
+                <br/>
+                Movie:  {{obj.movie}}
+                <br/>
+                Artist:  {{obj.artist}}
+            </font>
+            </p>
+            <div class="btn-group">
+              <form method='POST' action="{{obj.id}}">
+                {% csrf_token %}
+                <button type="submit" class="btn btn-sm btn-outline-secondary text-dark"><font face="jokerman" size="2px">Add</button></font>
+              </form>
+
+            </div>
+
+        </div>
+        </div>
+      </div>
+      {% endfor %}
+    </div>
+  </div>
+{% endif %}
+
+
+
+
+
+  <div class="container">
+
+    <div class="row">
+      {% for song in songs.all %}
+      <div class="col-md-4">
+        <div class="card mb-4 shadow-sm" style="width: 300px; height: 300px;" >
+          <div class="card-body">
+            <img  src="{{ song.image.url }}"  height="150" width="100" class="card-img-top"/>
+            <p class="card-text"><font face="jokerman" size="2px">
+                Song:  {{song.song_name}}
+                <br/>
+                Movie:  {{song.movie}}
+                <br/>
+                Artist:  {{song.artist}}
+            </font>
+            </p>
+            <div class="btn-group">
+              <form method='POST' action="{{song.id}}">
+                {% csrf_token %}
+                <button type="submit" class="btn btn-sm btn-outline-secondary text-dark"><font face="jokerman" size="2px">Add</button></font>
+              </form>
+
+            </div>
+
+        </div>
+        </div>
+      </div>
+      {% endfor %}
+    </div>
+</div>
+
+
+{% endblock %}

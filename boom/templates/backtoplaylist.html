@@ -1,0 +1,46 @@
+{% extends 'home.html' %}
+{% load staticfiles %}
+{% load static %}
+{% block content %}
+
+
+
+  <div class="album py-5 bg-dark">
+    {% for playlist in playlists.all %}
+    <div><font face="jokerman" color="lightblue"><h3>{{ playlist.list_name }}</h3></div></font>
+    <div class="container">
+
+      <div class="row">
+        {% for song in playlist.song.all %}
+        <div class="col-md-4">
+          <div class="card mb-4 shadow-sm">
+            <div class="card-body">
+              <img  src="{{song.image.url}}" height="200" width="200" class="card-img-top"/>
+              <p class="card-text"><font face="jokerman" size="3px">
+                                    {{ song.song_name }}
+                                    [ {{ song.movie }} ]</br>
+                                    Artist: {{song.artist}}
+                                    <br/>
+                                    <div class= "text-muted">{{song.year}}</div>
+                                    </font>
+              </p>
+              <div class="d-flex justify-content-between align-items-center">
+                <div class="btn-group">
+                  <audio id="player"  controls  style="width: 310px; height: 40px;">
+
+                        <source src="{{song.song_file.url}}" type="audio/mpeg">
+                          Your browser does not support the audio element.
+                  </audio>
+                </div>
+
+
+          </div>
+          </div>
+        </div>
+      </div>
+        {% endfor %}
+        {% endfor %}
+
+</div>
+</div>
+{% endblock %}
