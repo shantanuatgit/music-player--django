@@ -86,7 +86,7 @@ def deleteplaylists_view(request,pk):
 @login_required(login_url="/accounts/signup")
 def addtofavourites_view(request,pk):
     item=Song.objects.get(id=pk)
-    favs=Favourite.objects.all()
+    favs=Favourite.objects.filter(user=request.user)
     if favs.filter(song=item):
         return redirect('/')
     if request.method == 'POST':
