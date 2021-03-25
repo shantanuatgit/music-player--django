@@ -1,7 +1,7 @@
 
 <!doctype html>
 <html lang="en">
-{ % laod staticfiles % }
+{ % load staticfiles % }
   <head>
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1">
@@ -194,7 +194,7 @@
 
 {% endblock %}
 
-
+{% if track %}
 <nav class="navbar fixed-bottom navbar-expand-sm" style="background-color: #ffbbbc;">
   <div class="container-fluid">
     <a class="navbar-brand" href="#"><img class="img-fluid" src="{{ track.image.url }}" height="90" width="90"/></a>
@@ -205,13 +205,12 @@
       <ul class="navbar-nav">
         <li class="nav-item active">
           <font face="jokerman" size="4px">
-            {% if track %}
         <audio id="player"  controls autoplay style="width: 950px; height: 40px;">
 
               <source src="{{track.song_file.url}}" type="audio/mpeg">
                 Your browser does not support the audio element.
         </audio>
-        {% endif %}
+
       </font>
         </li>
         <li class="nav-item">
@@ -227,7 +226,7 @@
     </div>
   </div>
 </nav>
-
+{% endif %}
 
 
 
