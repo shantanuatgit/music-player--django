@@ -57,8 +57,8 @@ def createplaylist_view(request):
 @login_required(login_url="/accounts/signup")
 def addsongs_view(request,pk):
     songs=Song.objects.all()
+    global q
     if request.method == 'GET':
-        global q
         q=request.GET['query']
         obj_list=Song.objects.filter(Q(movie__icontains=q) | Q(song_name__icontains=q) | Q(artist__icontains=q))
         return render(request,'addsongs.html',{'songs':songs,'name':name, 'obj_list':obj_list})
